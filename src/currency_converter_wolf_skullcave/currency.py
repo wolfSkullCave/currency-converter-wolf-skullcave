@@ -43,6 +43,9 @@ def rate():
 def convert(num_to_convert: float):
         print (f"${round_up(num_to_convert)} = R {round_up(num_to_convert * conversion_rate)}")
 
+@app.command()
+def convert2(num_to_convert: str):
+        print(num_to_convert[0])
 
 if __name__ == "__main__":
     app()
