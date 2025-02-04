@@ -1,5 +1,4 @@
 """ Converts USD and EUR to ZAR """
-
 """
 v2.0.0 Todo list:
 - caluculator method

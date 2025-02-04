@@ -1,17 +1,10 @@
 [build-system]
-requires = ["hatchling"]
 build-backend = "hatchling.build"
+requires = ["hatchling"]
 
 [project]
-name = "currency-converter-wolf-skullcave"
-dynamic = ["version"]
-description = ''
-readme = "README.md"
-requires-python = ">=3.8"
-license = "MIT"
-keywords = []
 authors = [
-  { name = "wolf_skullcave", email = "7805222+wolfSkullCave@users.noreply.github.com" },
+  {name = "wolf_skullcave", email = "7805222+wolfSkullCave@users.noreply.github.com"},
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -25,9 +18,16 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "typer", 
+  "typer",
   "beautifulsoup4",
 ]
+description = ''
+dynamic = ["version"]
+keywords = []
+license = "MIT"
+name = "currency-converter-wolf-skullcave"
+readme = "README.md"
+requires-python = ">=3.8"
 
 [project.urls]
 Documentation = "https://github.com/wolfSkullCave/currency-converter-wolf-skullcave#readme"
@@ -50,15 +50,18 @@ extra-dependencies = [
 check = "mypy --install-types --non-interactive {args:src/currency_converter_wolf_skullcave tests}"
 
 [tool.coverage.run]
-source_pkgs = ["currency_converter_wolf_skullcave", "tests"]
 branch = true
-parallel = true
 omit = [
   "src/currency_converter_wolf_skullcave/__about__.py",
 ]
+parallel = true
+source_pkgs = ["currency_converter_wolf_skullcave", "tests"]
 
 [tool.coverage.paths]
-currency_converter_wolf_skullcave = ["src/currency_converter_wolf_skullcave", "*/currency-converter-wolf-skullcave/src/currency_converter_wolf_skullcave"]
+currency_converter_wolf_skullcave = [
+  "src/currency_converter_wolf_skullcave",
+  "*/currency-converter-wolf-skullcave/src/currency_converter_wolf_skullcave",
+]
 tests = ["tests", "*/currency-converter-wolf-skullcave/tests"]
 
 [tool.coverage.report]
