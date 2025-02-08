@@ -9,7 +9,9 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Uninstall](#uninstall)
 - [License](#license)
+
 
 ## Installation
 
@@ -21,17 +23,26 @@ pip install currency-converter-wolf-skullcave
 
 To view the exchange rate (USD to ZAR)
 ```console
-currency rate
+convert
 ```
 
 To convert an amount from USD to ZAR
 ```console
-currency convert <amount>
+convert <amount>
 ```
 
 Convert from EUR to ZAR
 ```console
-currency convert <amount> -c eur
+convert --currency eur <amount>
+```
+OR
+```console
+convert -e eur <amount>
+```
+
+## Uninstall
+```console
+pip uninstall currency-converter-wolf-skullcave
 ```
 
 ## License

@@ -2,6 +2,7 @@
 """
 v2.0.0 Todo list:
 - caluculator method
+convert 6 * 10
 """
 
 from bs4 import BeautifulSoup
@@ -49,12 +50,12 @@ def convert(num_to_convert, currency: str):
 
 @app.command()
 def main(
-    currency: str = typer.Option("USD", "-c", help="Choose an currency to convert from [usd, eur]."),
+    currency: str = typer.Option("USD", "-e", "--currency", help="Choose an currency to convert from [usd, eur]."),
     amount: str = typer.Argument('1'),
     version: bool = typer.Option(False, "-v", "--version")
     ):
     if version:
-        print(f"v{__version__}")
+        print(f"v{__version__}")        
     else:
         amount = decimal.Decimal(amount)
         convert(amount, currency)
