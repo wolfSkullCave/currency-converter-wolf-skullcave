@@ -6,7 +6,8 @@ v2.0.0 Todo list:
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import math
+# import math
+import decimal
 
 import typer
 from typing_extensions import Annotated
@@ -21,9 +22,9 @@ url_dollar = "https://currencyfreaks.com/convert/USD/ZAR/1.0"
 url_euro = "https://currencyfreaks.com/convert/EUR/ZAR/1.0"
 
 def round_up(num):
-    return round(
-        math.ceil(num * 100) / 100, 2
-    )
+    num = decimal.Decimal(num)
+    return num.quantize(decimal.Decimal('0.01'))
+
 
 def get_conversion_rate(url):
     page = urlopen(url)
@@ -32,11 +33,12 @@ def get_conversion_rate(url):
 
     currrency_html = soup.find("div", class_="result")
     currency_text = currrency_html.text
-    conversion_rate = float(currency_text.split("=")[1].split("ZAR")[0].strip())
+    conversion_rate = currency_text.split("=")[1].split("ZAR")[0].strip()
+    conversion_rate = decimal.Decimal(conversion_rate)
 
     return conversion_rate
 
-def convert(num_to_convert: float, currency: str):
+def convert(num_to_convert, currency: str):
     if currency == "USD" or currency == "usd":
         print(f"${round_up(num_to_convert)} = R {round_up(num_to_convert * get_conversion_rate(url_dollar))}")
     elif currency == "EUR" or currency == "eur":
@@ -48,12 +50,13 @@ def convert(num_to_convert: float, currency: str):
 @app.command()
 def main(
     currency: str = typer.Option("USD", "-c", help="Choose an currency to convert from [usd, eur]."),
-    amount: float = typer.Argument(1),
+    amount: str = typer.Argument('1'),
     version: bool = typer.Option(False, "-v", "--version")
     ):
     if version:
         print(f"v{__version__}")
     else:
+        amount = decimal.Decimal(amount)
         convert(amount, currency)
 
 
