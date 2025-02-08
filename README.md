@@ -29,11 +29,6 @@ To convert an amount from USD to ZAR
 currency convert <amount>
 ```
 
-Convert from EUR to ZAR
-```console
-currency convert <amount> -c eur
-```
-
 ## License
 
 `currency-converter-wolf-skullcave` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
