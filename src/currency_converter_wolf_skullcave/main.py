@@ -7,14 +7,12 @@ convert 6 * 10
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-# import math
 import decimal
 
 import typer
 from typing_extensions import Annotated
 from typing import Optional
 
-from __about__ import __version__
 
 app = typer.Typer()
 
@@ -52,13 +50,9 @@ def convert(num_to_convert, currency: str):
 def main(
     currency: str = typer.Option("USD", "-e", "--currency", help="Choose an currency to convert from [usd, eur]."),
     amount: str = typer.Argument('1'),
-    version: bool = typer.Option(False, "-v", "--version")
     ):
-    if version:
-        print(f"v{__version__}")        
-    else:
-        amount = decimal.Decimal(amount)
-        convert(amount, currency)
+    amount = decimal.Decimal(amount)
+    convert(amount, currency)
 
 
 if __name__ == "__main__":

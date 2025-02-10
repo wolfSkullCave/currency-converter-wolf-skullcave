@@ -36,8 +36,8 @@ Source = "https://github.com/wolfSkullCave/currency-converter-wolf-skullcave"
 
 # Provides an entry point for script
 [project.scripts]
-# currency = "currency_converter_wolf_skullcave.main:app"
-convert = "currency_converter_wolf_skullcave.main"
+currency-converter-wolf-skullcave = "currency_converter_wolf_skullcave:main"
+
 
 [tool.hatch.version]
 path = "src/currency_converter_wolf_skullcave/__about__.py"
@@ -70,3 +70,4 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
