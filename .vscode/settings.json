@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./src/currency_converter_wolf_skullcave"
+    ]
+}

@@ -1,18 +1,12 @@
 """ Converts USD and EUR to ZAR """
-"""
-v2.0.0 Todo list:
-- caluculator method
-convert 6 * 10
-"""
-
 import decimal
 import sys
 import typer
 from typing_extensions import Annotated
 from typing import Optional
 
-from __about__ import __version__
-from currency import convert
+from currency_converter_wolf_skullcave.__about__ import __version__
+from currency_converter_wolf_skullcave.currency import convert
 
 app = typer.Typer()
 
@@ -21,10 +15,11 @@ app = typer.Typer()
 def main(
     currency: str = typer.Option("USD", "-e", "--currency", help="Choose a currency to convert from [usd, eur]."),
     amount: str = typer.Argument('1'),
-    version: bool = typer.Option(False, "-v", "--version")
+    version: bool = typer.Option(False, "-v", "--version", help="Show the application's version and exit.")
     ):
     if version:
-        print(f"v{__version__}")        
+        print(f"v{__version__}")
+        raise typer.Exit()
     else:
         amount = decimal.Decimal(amount)
         convert(amount, currency)
