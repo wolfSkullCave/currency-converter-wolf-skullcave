@@ -5,52 +5,21 @@ v2.0.0 Todo list:
 convert 6 * 10
 """
 
-from bs4 import BeautifulSoup
-from urllib.request import urlopen
-# import math
 import decimal
-
+import sys
 import typer
 from typing_extensions import Annotated
 from typing import Optional
 
 from __about__ import __version__
+from currency import convert
 
 app = typer.Typer()
 
-# get currency conversion USD to ZAR
-url_dollar = "https://currencyfreaks.com/convert/USD/ZAR/1.0" 
-url_euro = "https://currencyfreaks.com/convert/EUR/ZAR/1.0"
-
-def round_up(num):
-    num = decimal.Decimal(num)
-    return num.quantize(decimal.Decimal('0.01'))
-
-
-def get_conversion_rate(url):
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
-
-    currrency_html = soup.find("div", class_="result")
-    currency_text = currrency_html.text
-    conversion_rate = currency_text.split("=")[1].split("ZAR")[0].strip()
-    conversion_rate = decimal.Decimal(conversion_rate)
-
-    return conversion_rate
-
-def convert(num_to_convert, currency: str):
-    if currency == "USD" or currency == "usd":
-        print(f"${round_up(num_to_convert)} = R {round_up(num_to_convert * get_conversion_rate(url_dollar))}")
-    elif currency == "EUR" or currency == "eur":
-        print(f"€{round_up(num_to_convert)} = R {round_up(num_to_convert * get_conversion_rate(url_euro))}")
-    else:
-        print("Please specify a currency")
-
-
+# main command
 @app.command()
 def main(
-    currency: str = typer.Option("USD", "-e", "--currency", help="Choose an currency to convert from [usd, eur]."),
+    currency: str = typer.Option("USD", "-e", "--currency", help="Choose a currency to convert from [usd, eur]."),
     amount: str = typer.Argument('1'),
     version: bool = typer.Option(False, "-v", "--version")
     ):
@@ -60,6 +29,9 @@ def main(
         amount = decimal.Decimal(amount)
         convert(amount, currency)
 
-
+# entry point
 if __name__ == "__main__":
-    app()
+    try:
+        app()
+    except Exception as e:
+        print(f"An error occurred: {e}")
