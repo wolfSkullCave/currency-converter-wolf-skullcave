@@ -21,7 +21,7 @@ dependencies = [
   "typer",
   "beautifulsoup4",
 ]
-description = ''
+description = 'Convert USD and EUR to ZAR'
 dynamic = ["version"]
 keywords = []
 license = "MIT"
@@ -45,6 +45,16 @@ path = "src/currency_converter_wolf_skullcave/__about__.py"
 extra-dependencies = [
   "mypy>=1.0.0",
 ]
+
+[tool.hatch.envs.dev]
+dependencies = [
+  "pip",
+  "python-lsp-server",
+  "marksman",
+  "twine",
+  "black",
+]
+
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/currency_converter_wolf_skullcave tests}"
 

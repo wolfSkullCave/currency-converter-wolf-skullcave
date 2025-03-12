@@ -1,4 +1,5 @@
-""" Converts USD and EUR to ZAR """
+"""Converts USD and EUR to ZAR"""
+
 import decimal
 import sys
 import typer
@@ -10,19 +11,25 @@ from currency_converter_wolf_skullcave.currency import convert
 
 app = typer.Typer()
 
+
 # main command
 @app.command()
 def main(
-    currency: str = typer.Option("USD", "-e", "--currency", help="Choose a currency to convert from [usd, eur]."),
-    amount: str = typer.Argument('1'),
-    version: bool = typer.Option(False, "-v", "--version", help="Show the application's version and exit.")
-    ):
+    currency: str = typer.Option(
+        "USD", "-e", "--currency", help="Choose a currency to convert from [usd, eur]."
+    ),
+    amount: str = typer.Argument("1"),
+    version: bool = typer.Option(
+        False, "-v", "--version", help="Show the application's version and exit."
+    ),
+):
     if version:
         print(f"v{__version__}")
         raise typer.Exit()
     else:
         amount = decimal.Decimal(amount)
         convert(amount, currency)
+
 
 # entry point
 if __name__ == "__main__":
