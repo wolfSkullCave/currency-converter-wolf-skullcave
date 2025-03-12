@@ -16,7 +16,7 @@ app = typer.Typer()
 @app.command()
 def main(
     currency: str = typer.Option(
-        "USD", "-e", "--currency", help="Choose a currency to convert from [usd, eur]."
+        "USD", "-c", "--currency", help="Choose a currency to convert from [usd, eur]."
     ),
     amount: str = typer.Argument("1"),
     version: bool = typer.Option(
