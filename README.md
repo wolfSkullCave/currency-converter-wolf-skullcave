@@ -1,4 +1,5 @@
 # currency_converter_wolf_skullcave
+This is a command line app for converting USD and EURO to ZAR.
 
 [![PyPI - Version](https://img.shields.io/pypi/v/currency-converter-wolf-skullcave.svg)](https://pypi.org/project/currency-converter-wolf-skullcave)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/currency-converter-wolf-skullcave.svg)](https://pypi.org/project/currency-converter-wolf-skullcave)
